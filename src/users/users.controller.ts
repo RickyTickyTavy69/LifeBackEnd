@@ -13,4 +13,13 @@ export class UsersController {
         const result = await this.userService.createUser(body);
         return result;
     }
+
+    @Post("validate")
+    async validateUser(@Body() body){
+        console.log("validating code", body);
+        const {code, username} = body;
+        const result = await this.userService.verifyUser(code, username);
+        return result;
+    }
+
 }

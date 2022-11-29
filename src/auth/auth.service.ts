@@ -12,9 +12,12 @@ export class AuthService {
     ) {}
 
     async login(email, password){
-        const user = await this.usersService.getUser(email);        //  НО В МОЁМ СЛУЧАЕ ЮЗЕР ЗДЕСЬ
+        const user = await this.usersService.getUser(email);
+        if(!user.verified){
+            return{message: "your account is not verified. Check out your email box", username: user.name, verified: false}
+        }
         if(!user) {
-            return {message: "invalid authorization data", user: null}
+            return {message: "invalid authorization data", username: null}
         }
         console.log("passwords", user.password, password);
         //const isMatch = await bcrypt.compare(password, user.password);
@@ -23,7 +26,7 @@ export class AuthService {
         const isMatch = (user.password === hashedpassword);
         console.log("isMatch", isMatch);
         if(!isMatch){
-            return {message: "invalid authorization data", user: null}
+            return {message: "invalid authorization data", username: null}
         }
         const payload: JwtPayLoad = {username: user.name}
         const accessToken = this.jwtService.sign(payload)
