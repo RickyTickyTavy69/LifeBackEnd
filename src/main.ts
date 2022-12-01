@@ -11,8 +11,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors();
   app.use(passport.initialize());
-  app.use(passport.session());
+  //app.use(passport.session());
 
-  await app.listen(process.env.PORT);
+  await app.listen(5000);
 }
 bootstrap();
