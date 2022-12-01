@@ -3,6 +3,7 @@ import { MailService } from './mail.service';
 import {MailerModule} from '@nestjs-modules/mailer';
 import {HandlebarsAdapter} from "@nestjs-modules/mailer/dist/adapters/handlebars.adapter";
 
+
 //path
 import * as path from "path";
 
@@ -14,7 +15,7 @@ import * as path from "path";
       secure: false,
       auth: {
         user:'bakirovartem69@gmail.com',
-        pass:'dznjgkqvndppztrg',
+        pass: process.env.GMAIL_PASS,
       },
     },
     defaults: {
