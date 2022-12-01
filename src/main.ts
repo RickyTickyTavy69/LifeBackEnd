@@ -6,7 +6,6 @@ import * as passport from "passport";
 
 //dotenv
 import dotenv from "dotenv";
-dotenv.config()
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
