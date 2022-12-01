@@ -2,8 +2,11 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
 //sessions für den Login
-import * as session from "express-session";
 import * as passport from "passport";
+
+//dotenv
+import dotenv from "dotenv";
+dotenv.config()
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -11,6 +14,6 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
 
-  await app.listen(5000);
+  await app.listen(process.env.PORT);
 }
 bootstrap();
