@@ -1,6 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import {MailerService} from "@nestjs-modules/mailer";
 
+// dotenv
+import * as dotenv from "dotenv";
+dotenv.config();
+
 @Injectable()
 export class MailService {
     constructor(private mailerService: MailerService) {}
